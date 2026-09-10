@@ -9,18 +9,21 @@ const contactDetails = [
     label: "Address",
     value: siteConfig.address,
     href: undefined,
+    color: "var(--accent)",
   },
   {
     icon: Phone,
     label: "Phone",
     value: siteConfig.phone,
     href: `tel:${siteConfig.phoneHref}`,
+    color: "var(--accent-2)",
   },
   {
     icon: Mail,
     label: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
+    color: "var(--accent-4)",
   },
 ];
 
@@ -42,8 +45,11 @@ export default function Contact() {
             <ul className="space-y-6">
               {contactDetails.map((detail) => (
                 <li key={detail.label} className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface">
-                    <detail.icon className="h-5 w-5 text-accent" aria-hidden="true" />
+                  <div
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: `color-mix(in srgb, ${detail.color} 16%, transparent)` }}
+                  >
+                    <detail.icon className="h-5 w-5" style={{ color: detail.color }} aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-muted">

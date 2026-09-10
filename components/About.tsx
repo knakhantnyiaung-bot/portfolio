@@ -7,21 +7,25 @@ const focusAreas = [
     icon: Layers,
     title: "Full-Stack Development",
     description: "Building complete applications across the frontend and backend.",
+    color: "var(--accent)",
   },
   {
     icon: Server,
     title: "Backend API Development",
     description: "Designing and implementing reliable, well-structured APIs.",
+    color: "var(--accent-2)",
   },
   {
     icon: Database,
     title: "Database-Driven Applications",
     description: "Architecting data models for scalable, maintainable systems.",
+    color: "var(--accent-3)",
   },
   {
     icon: ShieldCheck,
     title: "Software Architecture & Problem Solving",
     description: "Applying modern web technologies to solve real-world problems.",
+    color: "var(--accent-4)",
   },
 ];
 
@@ -51,8 +55,11 @@ export default function About() {
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {focusAreas.map((area) => (
                 <div key={area.title} className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface">
-                    <area.icon className="h-5 w-5 text-accent" aria-hidden="true" />
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: `color-mix(in srgb, ${area.color} 16%, transparent)` }}
+                  >
+                    <area.icon className="h-5 w-5" style={{ color: area.color }} aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-foreground">

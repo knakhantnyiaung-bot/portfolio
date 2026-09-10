@@ -39,8 +39,8 @@ export const educationEntries: EducationEntry[] = [
     institution: "Myanmar Technopreneur Academy (MTA)",
   },
   {
-    degree: "KBTC School of IT / NCC Education",
-    institution: "University of Central Lancashire",
+    degree: "Diploma in Computing",
+    institution: "KBTC School of IT (University of Central Lancashire)",
   },
   {
     degree: "B.C.Tech — Bachelor of Computer Technology",
@@ -55,6 +55,8 @@ export type Project = {
   description: string;
   technologies: string[];
   projectUrl?: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 export const projects: Project[] = [
@@ -73,6 +75,9 @@ export const projects: Project[] = [
       "REST API",
       "Docker",
     ],
+    projectUrl: "https://github.com/knakhantnyiaung-bot/vms-project",
+    image: "/images/projects/univision.png",
+    imageAlt: "Univision dashboard showing live pipeline and MediaMTX server status",
   },
   {
     name: "HR & Payroll Management System",
@@ -86,6 +91,9 @@ export const projects: Project[] = [
       "Backend APIs",
       "Database-Driven Architecture",
     ],
+    projectUrl: "https://github.com/knakhantnyiaung-bot/HR_Management",
+    image: "/images/projects/hr-payroll.png",
+    imageAlt: "HR & Payroll dashboard showing employee, leave, and payroll overview",
   },
   {
     name: "Luxe",
@@ -93,6 +101,9 @@ export const projects: Project[] = [
     description:
       "A modern e-commerce platform focused on providing a clean shopping experience and structured product management.",
     technologies: ["Next.js", "React", "TypeScript", "Node.js", "MongoDB"],
+    projectUrl: "https://github.com/knakhantnyiaung-bot/ecommerce-store",
+    image: "/images/projects/luxe.png",
+    imageAlt: "LuxeStore sign-in page with email and password fields",
   },
 ];
 

@@ -12,10 +12,20 @@ export default function Skills() {
         </FadeIn>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category, index) => {
+            const color = [
+              "var(--accent)",
+              "var(--accent-2)",
+              "var(--accent-3)",
+              "var(--accent-4)",
+            ][index % 4];
+            return (
             <FadeIn key={category.title} delayMs={index * 80}>
               <div className="h-full rounded-3xl border border-border bg-background p-7">
-                <h3 className="text-sm font-semibold tracking-wide text-accent uppercase">
+                <h3
+                  className="text-sm font-semibold tracking-wide uppercase"
+                  style={{ color }}
+                >
                   {category.title}
                 </h3>
                 <ul className="mt-5 flex flex-wrap gap-2">
@@ -30,7 +40,8 @@ export default function Skills() {
                 </ul>
               </div>
             </FadeIn>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

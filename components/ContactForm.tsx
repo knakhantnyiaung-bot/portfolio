@@ -151,7 +151,8 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="w-full rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-transform hover:scale-[1.01] active:scale-[0.99]"
+          className="w-full rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
+          style={{ background: "var(--gradient-brand)" }}
         >
           Send Message
         </button>
