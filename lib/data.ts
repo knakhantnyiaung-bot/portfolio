@@ -45,7 +45,6 @@ export const educationEntries: EducationEntry[] = [
   {
     degree: "B.C.Tech — Bachelor of Computer Technology",
     institution: "Polytechnic University, Maubin",
-    period: "2016 – 2026",
   },
 ];
 
@@ -143,4 +142,5 @@ export const siteConfig = {
   phoneHref: "+959979967741",
   address: "20 Padaukpin St., Kyeemyindaing, Yangon",
   technocratUrl: "https://www.facebook.com/technocrat2023t/",
+  facebookUrl: "https://www.facebook.com/khant.nyi.aung.157677",
 };
