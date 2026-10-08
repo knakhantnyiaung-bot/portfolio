@@ -2,58 +2,49 @@
 
 import { useState, type FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { validateContact, type ContactErrors, type ContactValues } from "@/lib/contact";
 
-type FormValues = {
-  name: string;
-  email: string;
-  message: string;
-};
-
-type FormErrors = Partial<Record<keyof FormValues, string>>;
-
-const initialValues: FormValues = { name: "", email: "", message: "" };
-
-function validate(values: FormValues): FormErrors {
-  const errors: FormErrors = {};
-
-  if (!values.name.trim()) {
-    errors.name = "Please enter your name.";
-  }
-
-  if (!values.email.trim()) {
-    errors.email = "Please enter your email.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Please enter a valid email address.";
-  }
-
-  if (!values.message.trim()) {
-    errors.message = "Please enter a message.";
-  } else if (values.message.trim().length < 10) {
-    errors.message = "Message should be at least 10 characters.";
-  }
-
-  return errors;
-}
+const initialValues: ContactValues = { name: "", email: "", message: "" };
 
 export default function ContactForm() {
-  const [values, setValues] = useState<FormValues>(initialValues);
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [values, setValues] = useState<ContactValues>(initialValues);
+  const [errors, setErrors] = useState<ContactErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleChange = (field: keyof FormValues) => (
+  const handleChange = (field: keyof ContactValues) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setValues((prev) => ({ ...prev, [field]: event.target.value }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const validationErrors = validate(values);
+    if (isSending) return;
+
+    setSubmitError("");
+    const validationErrors = validateContact(values);
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      setIsSubmitted(true);
-      setValues(initialValues);
+      setIsSending(true);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+        if (!response.ok) {
+          throw new Error("Message could not be sent.");
+        }
+        setIsSubmitted(true);
+        setValues(initialValues);
+      } catch {
+        setSubmitError("Message could not be sent. Please try again or email me directly.");
+      } finally {
+        setIsSending(false);
+      }
     }
   };
 
@@ -151,11 +142,18 @@ export default function ContactForm() {
 
         <button
           type="submit"
+          disabled={isSending}
+          aria-disabled={isSending}
           className="w-full rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
           style={{ background: "var(--gradient-brand)" }}
         >
-          Send Message
+          {isSending ? "Sending..." : "Send Message"}
         </button>
+        {submitError && (
+          <p role="alert" className="text-sm text-red-600">
+            {submitError}
+          </p>
+        )}
       </div>
     </form>
   );

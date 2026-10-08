@@ -16,6 +16,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Contact form email
+
+The contact form sends email through [Resend](https://resend.com/docs/api-reference/emails/send-email) to the address in `lib/data.ts` (`siteConfig.email`). To enable it:
+
+1. Create a Resend API key and verify a sending domain in Resend.
+2. Add these server-side variables to `.env.local` for local development and to your hosting provider's environment settings for deployment:
+
+   ```dotenv
+   RESEND_API_KEY=re_...
+   CONTACT_FROM_EMAIL="Portfolio <contact@your-verified-domain.com>"
+   ```
+
+3. Restart the development server after changing `.env.local`.
+
+`CONTACT_FROM_EMAIL` must use a domain verified in Resend. The visitor's email is set as the reply-to address. If email delivery is not configured or the provider rejects a message, the form keeps the entered values and displays an error.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
