@@ -21,14 +21,25 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 The contact form sends email through [Resend](https://resend.com/docs/api-reference/emails/send-email) to the address in `lib/data.ts` (`siteConfig.email`). To enable it:
 
 1. Create a Resend API key and verify a sending domain in Resend.
-2. Add these server-side variables to `.env.local` for local development and to your hosting provider's environment settings for deployment:
+2. Copy `.env.example` to `.env.local` for local development, then replace both placeholders. Set the same server-side variables in your hosting provider's environment settings for deployment:
 
    ```dotenv
    RESEND_API_KEY=re_...
-   CONTACT_FROM_EMAIL="Portfolio <contact@your-verified-domain.com>"
+   CONTACT_FROM_EMAIL="Portfolio <contact@khantnyiaung.com>"
    ```
 
 3. Restart the development server after changing `.env.local`.
+
+### Namecheap shared hosting
+
+This contact form needs the Next.js server route at `/api/contact`, so run the site through cPanel's **Setup Node.js App** rather than uploading only static files to `public_html`. In that app's settings, choose Production mode and a supported Node.js version (22 or newer), then add these two variables under **Environment variables**:
+
+| Name | Value |
+| --- | --- |
+| `RESEND_API_KEY` | Your private Resend API key |
+| `CONTACT_FROM_EMAIL` | `Portfolio <contact@khantnyiaung.com>` |
+
+Restart the Node.js app after saving the variables. The key belongs in cPanel's environment settings, never in website files or Git. Namecheap's [Next.js deployment guide](https://www.namecheap.com/support/knowledgebase/article.aspx/10686/29/how-to-deploy-reactjs-vitejs-react-native-and-nextjs-applications-in-cpanel/) covers the application root and startup file; its [Node.js app guide](https://www.namecheap.com/support/knowledgebase/article.aspx/10047/2182/how-to-work-with-nodejs-app/) shows where to add environment variables.
 
 `CONTACT_FROM_EMAIL` must use a domain verified in Resend. The visitor's email is set as the reply-to address. If email delivery is not configured or the provider rejects a message, the form keeps the entered values and displays an error.
 
