@@ -35,7 +35,7 @@ export default function About() {
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            About Me
+            About &amp; Experience
           </h2>
         </FadeIn>
 

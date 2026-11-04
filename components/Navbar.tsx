@@ -16,11 +16,12 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Primary">
         <a
           href="#home"
-          className="gradient-text text-base font-semibold tracking-tight"
+          className="text-base font-semibold tracking-tight text-foreground hover:text-accent"
         >
           {siteConfig.name}
         </a>
@@ -44,7 +45,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground hover:bg-surface md:hidden"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label={isOpen ? "Close menu" : "Open menu"}

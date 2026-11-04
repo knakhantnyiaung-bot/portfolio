@@ -9,7 +9,7 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Selected Projects
+            Selected Work
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-muted">
             A selection of software projects I have successfully built and

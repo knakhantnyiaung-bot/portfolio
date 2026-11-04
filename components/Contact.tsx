@@ -55,7 +55,7 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Let&apos;s Work Together
+            Contact
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-muted">
             Have a project, opportunity, or idea? Feel free to get in touch.

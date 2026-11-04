@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/data";
 
 export default function Founder() {
   return (
-    <section id="founder" className="px-6 py-24 sm:py-32">
+    <section id="technocrat" className="px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
           <div
